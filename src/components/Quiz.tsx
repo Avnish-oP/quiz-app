@@ -10,14 +10,23 @@ type Question = {
 };
 
 const Quiz = () => {
-  const initialTime = 600; 
-  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(() => parseInt(localStorage.getItem('currentQuestionIndex') || '0'));
-  const [timeLeft, setTimeLeft] = useState<number>(() => parseInt(localStorage.getItem('timeLeft') || initialTime.toString()));
+  const initialTime = 600; // 10 minutes in seconds
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState<number>(0);
+  const [timeLeft, setTimeLeft] = useState<number>(initialTime);
   const [selectedAnswer, setSelectedAnswer] = useState<string>('');
   const [isFullScreen, setIsFullScreen] = useState<boolean>(false);
   const [score, setScore] = useState<number>(0);
   const [showResults, setShowResults] = useState<boolean>(false);
   const [quizStarted, setQuizStarted] = useState<boolean>(false);
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const savedQuestionIndex = parseInt(localStorage.getItem('currentQuestionIndex') || '0');
+      const savedTimeLeft = parseInt(localStorage.getItem('timeLeft') || initialTime.toString());
+      setCurrentQuestionIndex(savedQuestionIndex);
+      setTimeLeft(savedTimeLeft);
+    }
+  }, []);
 
   useEffect(() => {
     let interval: NodeJS.Timeout | null = null;
@@ -31,7 +40,9 @@ const Quiz = () => {
             return 0;
           }
           const newTimeLeft = prevTimeLeft - 1;
-          localStorage.setItem('timeLeft', newTimeLeft.toString());
+          if (typeof window !== 'undefined') {
+            localStorage.setItem('timeLeft', newTimeLeft.toString());
+          }
           return newTimeLeft;
         });
       }, 1000);
@@ -60,7 +71,9 @@ const Quiz = () => {
     if (currentQuestionIndex < questions.length - 1) {
       setCurrentQuestionIndex((prevIndex) => {
         const newIndex = prevIndex + 1;
-        localStorage.setItem('currentQuestionIndex', newIndex.toString());
+        if (typeof window !== 'undefined') {
+          localStorage.setItem('currentQuestionIndex', newIndex.toString());
+        }
         return newIndex;
       });
     } else {
@@ -70,8 +83,10 @@ const Quiz = () => {
 
   const handleQuizEnd = () => {
     setShowResults(true);
-    localStorage.removeItem('currentQuestionIndex');
-    localStorage.removeItem('timeLeft');
+    if (typeof window !== 'undefined') {
+      localStorage.removeItem('currentQuestionIndex');
+      localStorage.removeItem('timeLeft');
+    }
   };
 
   const handleFullScreen = () => {
@@ -105,7 +120,7 @@ const Quiz = () => {
 
   if (!quizStarted) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gradient-to-r from-purple-600 to-purple-700 text-white">
+      <div className="flex items-center justify-center h-screen bg-gradient-to-r from-blue-500 to-purple-600 text-white">
         <div className="bg-white p-6 rounded-lg shadow-lg text-center text-gray-800">
           <h1 className="text-3xl font-bold mb-4">Welcome to the Quiz</h1>
           <button
