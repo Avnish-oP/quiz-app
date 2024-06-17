@@ -1,0 +1,53 @@
+[
+    {
+      "question": "What is the capital of France?",
+      "choices": ["Paris", "London", "Rome", "Berlin"],
+      "answer": "Paris"
+    },
+    {
+      "question": "Which planet is known as the Red Planet?",
+      "choices": ["Earth", "Mars", "Jupiter", "Saturn"],
+      "answer": "Mars"
+    },
+    {
+      "question": "What is the largest ocean on Earth?",
+      "choices": ["Atlantic Ocean", "Indian Ocean", "Arctic Ocean", "Pacific Ocean"],
+      "answer": "Pacific Ocean"
+    },
+    {
+      "question": "Who wrote 'Hamlet'?",
+      "choices": ["Charles Dickens", "Jane Austen", "William Shakespeare", "Mark Twain"],
+      "answer": "William Shakespeare"
+    },
+    {
+      "question": "What is the smallest prime number?",
+      "choices": ["0", "1", "2", "3"],
+      "answer": "2"
+    },
+    {
+      "question": "What is the boiling point of water?",
+      "choices": ["90°C", "100°C", "110°C", "120°C"],
+      "answer": "100°C"
+    },
+    {
+      "question": "What is the largest continent?",
+      "choices": ["Africa", "Asia", "Europe", "Australia"],
+      "answer": "Asia"
+    },
+    {
+      "question": "What is the chemical symbol for gold?",
+      "choices": ["Au", "Ag", "Go", "Gd"],
+      "answer": "Au"
+    },
+    {
+      "question": "Which country is known as the Land of the Rising Sun?",
+      "choices": ["China", "Japan", "Thailand", "South Korea"],
+      "answer": "Japan"
+    },
+    {
+      "question": "How many sides does a hexagon have?",
+      "choices": ["5", "6", "7", "8"],
+      "answer": "6"
+    }
+  ]
+  
